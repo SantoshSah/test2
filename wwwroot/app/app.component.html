@@ -1,0 +1,38 @@
+<div style="height:900px;width:100%;" flow-prevent-drop-container [dragEnterClass] = "''" [dragLeaveClass] = "''">
+<div class="container">
+	<h1>Simple implementation of flow.js with angular2 and typescript</h1>
+	<hr class="soften"/>
+
+	<div class="row">
+	    <div class="col col-md-12">
+
+	    	<!--
+	    	Please note:
+	    	1) Add [flowSingleFile] = "true" to flow-upload-btn directory if you want to to select single file. Exclusion on property flowSingleFile will allow multiple file or you can explicitly set value of flowSingleFile to false to allow multiple files.
+
+	    	2) [flowDirectory] = "true" to flow-upload-btn directory if you want to select directory. Exlusion of property flowDirectory will support files only. You can explicitly set value of flowDirectory to false to allow files only.
+
+	    	3) flowjs.supportDirectory checks if Directory upload is supported by Browser 
+	    	-->
+
+			<span class="btn btn-default" flow-upload-btn>Upload File</span>
+			<span class="btn btn-default" flow-upload-btn [flowDirectory] = "true" *ngIf = "flowjs.supportDirectory">Upload Folder</span>
+	    </div>
+  	</div>
+  	
+	<hr class="soften"/>
+	<flow-drop-container [defaultClass] = "'alert-warning'" [dragEnterClass] = "'alert-success'" ></flow-drop-container>
+  	<hr class="soften">
+	<h2>Transfers:</h2>
+	<p>
+		
+		<a class="btn btn-small btn-success" (click)="uploadFiles()">Upload</a>
+		<a class="btn btn-small btn-danger" (click)="pauseFiles()">Pause</a>
+		<a class="btn btn-small btn-info" (click)="cancelFiles()">Cancel</a>
+		
+		<span class="label label-info">Size: {{flowjs.getSize()}}</span>
+		<span class="label label-info">Is Uploading: {{flowjs.isUploading()}}</span>
+	</p>
+	<file-list></file-list>
+</div> 
+</div>

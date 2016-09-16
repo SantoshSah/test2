@@ -1,0 +1,41 @@
+<table class="table table-hover table-bordered table-striped table-responsive">
+<thead>
+<tr>
+  <th>#</th>
+  <th>Name</th>
+  <th>Size</th>
+  <th>Progress</th>
+  <th>Paused</th>
+  <th>Uploading</th>
+  <th>Completed</th>
+  <th>Settings</th>
+</tr>
+</thead>
+<tbody>
+<tr *ngFor="let file of files; let i=index">
+  <td>{{i+1}}</td>
+  <td>{{file.name}}</td>
+  <td>{{file.size}}</td>
+  <td>{{file.progress() | percent}}</td> <!--use percent pipe to show progress in percentage-->
+  <td>{{file.paused}}</td>
+  <td>{{file.isUploading()}}</td>
+  <td>{{file.isComplete()}}</td>
+  <td>
+    <div class="btn-group">
+      <a class="btn btn-mini btn-warning" (click)="pauseFile(file)" *ngIf = "!file.paused">
+        Pause
+      </a>
+      <a class="btn btn-mini btn-warning" (click)="resumeFile(file)" *ngIf = "file.paused">
+        Resume
+      </a>
+      <a class="btn btn-mini btn-danger" (click)="cancelFile(file)">
+        Cancel
+      </a>
+      <a class="btn btn-mini btn-info" (click)="retryFile(file)" *ngIf = "file.error">
+        Retry
+      </a>
+    </div>
+  </td>
+</tr>
+</tbody>
+</table>
