@@ -41,6 +41,9 @@ export class FlowService {
         me.flowFileSource.next(file);
     });
 
+  this.flowjs.on('filesSubmitted', function(file){ 
+        console.log(file);
+    });
 
   }
 

@@ -38,6 +38,9 @@ var FlowService = (function () {
         this.flowjs.on('fileRemoved', function (file) {
             me.flowFileSource.next(file);
         });
+        this.flowjs.on('filesSubmitted', function (file) {
+            console.log(file);
+        });
     }
     FlowService.prototype.getFlowJsObject = function () {
         return this.flowjs;
